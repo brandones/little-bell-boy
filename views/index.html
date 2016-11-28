@@ -1,0 +1,94 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: http://mozilla.github.io/nunjucks/ -->
+<!-- jade: http://jade-lang.com/ -->
+<!-- haml: http://haml.info/tutorial.html -->
+<!-- hbs(handlebars): http://handlebarsjs.com/expressions.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Little Bell Boy</title>
+    <meta name="description" content="A cool thing made with HyperDev">
+    <link id="favicon" rel="icon" href="https://hyperdev.com/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div  class="container">
+    <header>
+      <h1>
+        Little Bell Boy
+      </h1>
+    </header>
+
+    <main>
+      <div id="data"></div>
+      
+      <p>
+        Here's the probability distribution for the rate at which
+        individuals hear LDB. i.e., if the peak of the curve is at 
+        day 16, you can take that to mean that people, on average,
+        run into LDB once every 16 days (during the game period).
+      </p>
+      <div id="curve"></div>
+      <p><b>Prior distribution </b><span id="prior-dist"></span></p>
+      <p><b>Posterior distribution </b><span id="posterior-dist"></span></p>
+      
+      <br>
+      
+      <b>Here's the data we have on when folks have struck out</b>
+      <section>
+        <table id="person-data" class="table">
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+          </tr>
+        </table>
+      </section>
+      
+      <b>Hold up, shouldn't the rate go up as Christmas appraches?</b>
+      <p>
+        Yeah, I think it should. This model trains a single parameter,
+        the rate parameter β of a Gamma distribution. I think maybe it
+        should do a linear regression, finding a positively-sloped line
+        that describes β over time. I guess then we'd be training two
+        parameters, β and dβ/dt. Other ideas more than welcome.
+      </p>
+      
+      <b>How are people who won the LDB game (didn't hear it all season) encoded?</b>
+      <p>
+        They're not. They're treated as no data. Wah-wahhhhhh.
+        One fairly obvious
+        solution would be to assign them a "default" LDB date sometime after
+        the season, but it seemed really hard to justify the use of any
+        particular date for that.
+      </p>
+      
+    </main>
+    </div>
+
+    <footer>
+      <a href="https://hyperdev.com">
+        Remix this in HyperDev
+      </a>
+    </footer>
+
+    <!-- Your web-app is https, so your scripts need to be too -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src='https://cdn.zingchart.com/zingchart.min.js'></script>
+
+    <script src="/client.js"></script>
+
+  </body>
+</html>
